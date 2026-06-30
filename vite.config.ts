@@ -8,12 +8,16 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
-    dts({
-      include: ['src'],
-      exclude: ['src/**/*.stories.tsx', 'src/**/*.test.tsx', 'src/test'],
-      insertTypesEntry: true,
-      rollupTypes: true,
-    }),
+    ...(process.env.VITE_LIB_BUILD
+      ? [
+          dts({
+            include: ['src'],
+            exclude: ['src/**/*.stories.tsx', 'src/**/*.test.tsx', 'src/test'],
+            insertTypesEntry: true,
+            rollupTypes: true,
+          }),
+        ]
+      : []),
   ],
   resolve: {
     alias: {

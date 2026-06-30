@@ -33,7 +33,7 @@
   ],
   "scripts": {
     "dev": "storybook dev -p 6006",
-    "build": "vite build && echo 'export {}' > dist/styles.d.ts",
+    "build": "VITE_LIB_BUILD=true vite build && echo 'export {}' > dist/styles.d.ts",
     "build:storybook": "storybook build",
     "start": "serve storybook-static -l $PORT",
     "test": "vitest run",
