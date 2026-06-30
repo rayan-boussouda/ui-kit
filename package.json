@@ -3,6 +3,9 @@
   "version": "0.1.1",
   "description": "React component library and design system",
   "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",

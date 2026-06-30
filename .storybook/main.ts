@@ -1,5 +1,4 @@
 import type { StorybookConfig } from '@storybook/react-vite'
-import tailwindcss from '@tailwindcss/vite'
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.stories.@(ts|tsx)'],
@@ -9,6 +8,7 @@ const config: StorybookConfig = {
     options: {},
   },
   viteFinal: async (config) => {
+    const { default: tailwindcss } = await import('@tailwindcss/vite')
     config.plugins = [...(config.plugins ?? []), tailwindcss()]
     return config
   },
