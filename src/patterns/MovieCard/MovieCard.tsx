@@ -7,6 +7,8 @@ export interface MovieCardProps {
   title: string
   posterUrl?: string
   rating?: number
+  myRating?: number
+  onRate?: (value: number) => void
   genres?: string[]
   year?: number
   overview?: string
@@ -18,6 +20,8 @@ export const MovieCard = ({
   title,
   posterUrl,
   rating,
+  myRating,
+  onRate,
   genres = [],
   year,
   overview,
@@ -36,7 +40,7 @@ export const MovieCard = ({
     tabIndex={onClick ? 0 : undefined}
     onKeyDown={onClick ? (e) => e.key === 'Enter' && onClick() : undefined}
   >
-    <div className="relative aspect-[2/3] overflow-hidden bg-neutral-800">
+    <div className="relative h-48 overflow-hidden bg-neutral-800">
       {posterUrl ? (
         <img
           src={posterUrl}
@@ -65,6 +69,18 @@ export const MovieCard = ({
 
       {rating !== undefined && (
         <RatingStars value={rating} size="sm" readonly />
+      )}
+
+      {onRate !== undefined && (
+        <div className="flex flex-col gap-0.5" onClick={(e) => e.stopPropagation()}>
+          <span className="text-xs text-neutral-500">My Rating</span>
+          <RatingStars
+            value={myRating !== undefined ? myRating * 2 : 0}
+            size="sm"
+            readonly={false}
+            onChange={(v) => onRate(Math.round((v / 10) * 5))}
+          />
+        </div>
       )}
 
       {overview && (
