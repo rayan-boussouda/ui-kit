@@ -14,6 +14,7 @@ type Story = StoryObj<typeof MovieCard>
 
 export const Default: Story = {
   args: {
+    id: 1,
     title: 'Inception',
     rating: 8.8,
     genres: ['Sci-Fi', 'Action', 'Thriller'],
@@ -26,6 +27,7 @@ export const Default: Story = {
 
 export const NoPoster: Story = {
   args: {
+    id: 2,
     title: 'Movie Without Poster',
     rating: 7.2,
     genres: ['Drama'],
@@ -36,18 +38,20 @@ export const NoPoster: Story = {
 
 export const WithAdminActions: Story = {
   args: {
+    id: 3,
     title: 'Inception',
     rating: 8.8,
     genres: ['Sci-Fi', 'Action'],
     year: 2010,
-    onEdit: () => alert('edit'),
-    onDelete: () => alert('delete'),
+    onEdit: (id) => alert(`edit ${id}`),
+    onDelete: (id) => alert(`delete ${id}`),
   },
   decorators: [(Story) => <div className="w-48"><Story /></div>],
 }
 
 export const WithMyRating: Story = {
   args: {
+    id: 4,
     title: 'Inception',
     rating: 8.8,
     genres: ['Sci-Fi', 'Action'],
@@ -64,12 +68,12 @@ export const Grid: Story = {
     <div className="w-[640px]">
       <MovieGrid columns={3}>
         {[
-          { title: 'Inception', rating: 8.8, genres: ['Sci-Fi', 'Action'], year: 2010 },
-          { title: 'The Dark Knight', rating: 9.0, genres: ['Action', 'Crime'], year: 2008 },
-          { title: 'Interstellar', rating: 8.6, genres: ['Sci-Fi', 'Drama'], year: 2014 },
-          { title: 'Dune', rating: 8.0, genres: ['Sci-Fi', 'Adventure'], year: 2021 },
-          { title: 'Oppenheimer', rating: 8.4, genres: ['History', 'Drama'], year: 2023 },
-          { title: 'Parasite', rating: 8.5, genres: ['Thriller', 'Drama'], year: 2019 },
+          { id: 1, title: 'Inception', rating: 8.8, genres: ['Sci-Fi', 'Action'], year: 2010 },
+          { id: 2, title: 'The Dark Knight', rating: 9.0, genres: ['Action', 'Crime'], year: 2008 },
+          { id: 3, title: 'Interstellar', rating: 8.6, genres: ['Sci-Fi', 'Drama'], year: 2014 },
+          { id: 4, title: 'Dune', rating: 8.0, genres: ['Sci-Fi', 'Adventure'], year: 2021 },
+          { id: 5, title: 'Oppenheimer', rating: 8.4, genres: ['History', 'Drama'], year: 2023 },
+          { id: 6, title: 'Parasite', rating: 8.5, genres: ['Thriller', 'Drama'], year: 2019 },
         ].map((m) => (
           <MovieCard key={m.title} {...m} onClick={() => {}} />
         ))}
