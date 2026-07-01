@@ -6,6 +6,7 @@ import { ActionButton } from '@/primitives/ActionButton/ActionButton'
 
 export interface MovieCardProps {
   title: string
+  id: number
   posterUrl?: string
   rating?: number
   myRating?: number
@@ -15,12 +16,13 @@ export interface MovieCardProps {
   overview?: string
   onClick?: () => void
   className?: string
-  onEdit?: () => void
-  onDelete?: () => void
+  onEdit?: (id: number) => void
+  onDelete?: (id: number) => void
 }
 
 export const MovieCard = ({
   title,
+  id,
   posterUrl,
   rating,
   myRating,
@@ -66,12 +68,9 @@ export const MovieCard = ({
       )}
 
       {(onEdit || onDelete) && (
-        <div
-          className="absolute top-2 left-2 flex gap-1"
-          onClick={(e) => e.stopPropagation()}
-        >
-          {onEdit && <ActionButton variant="edit" size={2} onClick={onEdit} />}
-          {onDelete && <ActionButton variant="delete" size={2} onClick={onDelete} />}
+        <div className="absolute top-2 left-2 flex gap-1" onClick={(e) => e.stopPropagation()}>
+          {onEdit && <ActionButton variant="edit" size={2} onClick={() => onEdit(id)} />}
+          {onDelete && <ActionButton variant="delete" size={2} onClick={() => onDelete(id)} />}
         </div>
       )}
     </div>
@@ -82,9 +81,7 @@ export const MovieCard = ({
         {year && <span className="shrink-0 text-xs text-neutral-400">{year}</span>}
       </div>
 
-      {rating !== undefined && (
-        <RatingStars value={rating} size="sm" readonly />
-      )}
+      {rating !== undefined && <RatingStars value={rating} size="sm" readonly />}
 
       {onRate !== undefined && (
         <div className="flex flex-col gap-0.5" onClick={(e) => e.stopPropagation()}>
