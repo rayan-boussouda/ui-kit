@@ -1,6 +1,6 @@
 {
   "name": "@rayan.boussouda/ui-kit",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "React component library and design system",
   "type": "module",
   "engines": {
