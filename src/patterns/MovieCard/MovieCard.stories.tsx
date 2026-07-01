@@ -34,6 +34,30 @@ export const NoPoster: Story = {
   decorators: [(Story) => <div className="w-48"><Story /></div>],
 }
 
+export const WithAdminActions: Story = {
+  args: {
+    title: 'Inception',
+    rating: 8.8,
+    genres: ['Sci-Fi', 'Action'],
+    year: 2010,
+    onEdit: () => alert('edit'),
+    onDelete: () => alert('delete'),
+  },
+  decorators: [(Story) => <div className="w-48"><Story /></div>],
+}
+
+export const WithMyRating: Story = {
+  args: {
+    title: 'Inception',
+    rating: 8.8,
+    genres: ['Sci-Fi', 'Action'],
+    year: 2010,
+    myRating: 4,
+    onRate: (v) => alert(`Rated ${v}`),
+  },
+  decorators: [(Story) => <div className="w-48"><Story /></div>],
+}
+
 export const Grid: Story = {
   name: 'In a MovieGrid',
   render: () => (
