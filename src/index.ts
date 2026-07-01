@@ -5,6 +5,7 @@ export * from './tokens'
 
 // Primitives
 export * from './primitives/Button'
+export * from './primitives/ActionButton/ActionButton'
 export * from './primitives/Input'
 export * from './primitives/Select'
 export * from './primitives/Badge'

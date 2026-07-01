@@ -2,6 +2,7 @@ import { cn } from '@/lib/utils'
 import { Badge } from '@/primitives/Badge'
 import { GenreTag } from '@/patterns/GenreTag'
 import { RatingStars } from '@/patterns/RatingStars'
+import { ActionButton } from '@/primitives/ActionButton/ActionButton'
 
 export interface MovieCardProps {
   title: string
@@ -14,6 +15,8 @@ export interface MovieCardProps {
   overview?: string
   onClick?: () => void
   className?: string
+  onEdit?: () => void
+  onDelete?: () => void
 }
 
 export const MovieCard = ({
@@ -27,6 +30,8 @@ export const MovieCard = ({
   overview,
   onClick,
   className,
+  onEdit,
+  onDelete,
 }: MovieCardProps) => (
   <div
     className={cn(
@@ -57,6 +62,16 @@ export const MovieCard = ({
           <Badge className="border-0 bg-black/70 text-yellow-400 backdrop-blur-sm">
             ★ {rating.toFixed(1)}
           </Badge>
+        </div>
+      )}
+
+      {(onEdit || onDelete) && (
+        <div
+          className="absolute top-2 left-2 flex gap-1"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {onEdit && <ActionButton variant="edit" size={2} onClick={onEdit} />}
+          {onDelete && <ActionButton variant="delete" size={2} onClick={onDelete} />}
         </div>
       )}
     </div>
