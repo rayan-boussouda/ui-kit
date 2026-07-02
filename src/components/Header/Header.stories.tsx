@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Header } from './Header'
-import { Button } from '@/primitives/Button'
-import { Avatar } from '@/primitives/Avatar'
+import { UserMenu } from '@/components/UserMenu'
 
 const meta: Meta<typeof Header> = {
   title: 'Components/Header',
@@ -21,49 +20,48 @@ const navLinks = [
 ]
 
 const Logo = () => (
-  <span className="text-lg font-bold tracking-tight text-neutral-900">
-    🎬 CineApp
-  </span>
+  <span className="text-lg font-bold tracking-tight text-neutral-900">🎬 CineApp</span>
 )
 
-export const LoggedOut: Story = {
-  name: 'Logged out',
+const userMenuItems = [
+  { label: 'Profile', href: '/profile' },
+  { label: 'Settings', href: '/settings' },
+  { label: 'Log out', onClick: () => alert('Logged out'), separator: true },
+]
+
+export const Default: Story = {
   args: {
     logo: <Logo />,
     links: navLinks,
     rightSlot: (
-      <div className="flex items-center gap-2">
-        <Button variant="ghost" size="sm">Sign in</Button>
-        <Button size="sm">Sign up</Button>
-      </div>
+      <UserMenu
+        src="https://api.dicebear.com/7.x/avataaars/svg?seed=rayan"
+        alt="Rayan"
+        name="Rayan"
+        items={userMenuItems}
+      />
     ),
   },
 }
 
-export const LoggedIn: Story = {
-  name: 'Logged in',
+export const WithInitials: Story = {
+  name: 'Avatar with initials (no image)',
   args: {
     logo: <Logo />,
     links: navLinks,
     rightSlot: (
-      <div className="flex items-center gap-3">
-        <span className="text-sm text-neutral-600">Rayan</span>
-        <Avatar src="https://api.dicebear.com/7.x/avataaars/svg?seed=rayan" alt="Rayan" />
-      </div>
+      <UserMenu
+        initials="RB"
+        alt="Rayan Boussouda"
+        name="Rayan Boussouda"
+        items={userMenuItems}
+      />
     ),
-  },
-}
-
-export const NoLinks: Story = {
-  name: 'Logo and slot only',
-  args: {
-    logo: <Logo />,
-    rightSlot: <Button size="sm">Get started</Button>,
   },
 }
 
 export const Mobile: Story = {
-  name: 'Mobile (open drawer)',
+  name: 'Mobile',
   parameters: {
     viewport: { defaultViewport: 'mobile1' },
   },
@@ -71,10 +69,12 @@ export const Mobile: Story = {
     logo: <Logo />,
     links: navLinks,
     rightSlot: (
-      <div className="flex items-center gap-2">
-        <Button variant="ghost" size="sm">Sign in</Button>
-        <Button size="sm">Sign up</Button>
-      </div>
+      <UserMenu
+        src="https://api.dicebear.com/7.x/avataaars/svg?seed=rayan"
+        alt="Rayan"
+        name="Rayan"
+        items={userMenuItems}
+      />
     ),
   },
 }

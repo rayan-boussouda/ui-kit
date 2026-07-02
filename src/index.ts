@@ -18,6 +18,7 @@ export * from './components/Card'
 export * from './components/Skeleton'
 export * from './components/Modal'
 export * from './components/Header'
+export * from './components/UserMenu'
 
 // Patterns
 export * from './patterns/GenreTag'
