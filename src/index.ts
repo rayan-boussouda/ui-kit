@@ -17,6 +17,7 @@ export * from './primitives/Avatar'
 export * from './components/Card'
 export * from './components/Skeleton'
 export * from './components/Modal'
+export * from './components/Header'
 
 // Patterns
 export * from './patterns/GenreTag'
